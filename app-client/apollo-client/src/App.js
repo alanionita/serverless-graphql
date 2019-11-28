@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import UserList from './components/UserList';
 import logo from './logo.svg';
+// import gql from 'graphql-tag';
 import './App.css';
 
-import { ApolloClient } from 'apollo-client';
-import { ApolloProvider } from 'react-apollo';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const client = new ApolloClient({
-  link: new HttpLink({ uri: process.env.REACT_APP_GRAPHQL_ENDPOINT }),
+  uri: process.env.REACT_APP_GRAPHQL_ENDPOINT,
   cache: new InMemoryCache(),
 });
-
-/* fetch data from graphQL server and print on console */
-//client.query({ query: gql`{ hello }` }).then(console.log);
 
 class App extends Component {
   render() {
